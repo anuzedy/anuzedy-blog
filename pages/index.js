@@ -1,8 +1,9 @@
 import React from 'react';
+import Blog from './Blog';
 
 const Index = () => {
   return (
-    <div>Hello blog!</div>
+    <Blog />
   );
 }
 
