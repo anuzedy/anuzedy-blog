@@ -1,17 +1,19 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap'
-import Navibar from './Navbar';
+import Navibar from './Navibar';
+import Category from './Category';
+import BoardTable from './BoardTable';
 
 const MainLayout = () => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col><Navibar /></Col>
       </Row>
       <Row>
-        <Col>1 of 2</Col>
-        <Col>2 of 2</Col>
+        <Col sm={2}><Category /></Col>
+        <Col sm={10}><BoardTable /></Col>
       </Row>
     </Container>
   );
