@@ -9,13 +9,12 @@
   "author": "anuzedy",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
-    "@material-ui/icons": "^4.11.2",
-    "antd": "^4.9.4",
+    "bootstrap": "^4.5.3",
     "next": "^9.5.5",
     "prop-types": "^15.7.2",
     "raw-loader": "^4.0.2",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-markdown": "^5.0.3",
     "styled-components": "^5.2.1"

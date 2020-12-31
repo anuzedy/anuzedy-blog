@@ -1,9 +1,9 @@
 import React from 'react';
-import Blog from './Blog';
+import MainLayout from '../components/MainLayout';
 
 const Index = () => {
   return (
-    <Blog />
+    <MainLayout />
   );
 }
 
