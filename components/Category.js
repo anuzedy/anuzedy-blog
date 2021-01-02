@@ -1,30 +1,41 @@
 import React from 'react';
-import { Accordion, Button, Card } from 'react-bootstrap';
+import styled from 'styled-components';
+import { ListGroup } from 'react-bootstrap';
+
+const BorderlessItem = styled(ListGroup.Item)`
+  border: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+`;
 
 const Category = () => {
   return (
-    <Accordion defaultActiveKey="0">
-      <Card>
-        <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            카테고리1
-          </Accordion.Toggle>
-        </Card.Header>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body>하위카테고리1</Card.Body>
-        </Accordion.Collapse>
-      </Card>
-      <Card>
-        <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey="1">
-          카테고리2
-          </Accordion.Toggle>
-        </Card.Header>
-        <Accordion.Collapse eventKey="1">
-          <Card.Body>하위카테고리1</Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    </Accordion>
+    <ListGroup >
+      <ListGroup.Item>
+        카테고리1
+        <ListGroup>
+          <BorderlessItem>하위카테고리1</BorderlessItem>
+          <BorderlessItem>하위카테고리2</BorderlessItem>
+          <BorderlessItem>하위카테고리3</BorderlessItem>
+        </ListGroup>
+      </ListGroup.Item>
+      <ListGroup.Item>
+        카테고리2
+        <ListGroup>
+          <BorderlessItem>하위카테고리1</BorderlessItem>
+          <BorderlessItem>하위카테고리2</BorderlessItem>
+          <BorderlessItem>하위카테고리3</BorderlessItem>
+        </ListGroup>
+      </ListGroup.Item>
+      <ListGroup.Item>
+        카테고리3
+        <ListGroup>
+          <BorderlessItem>하위카테고리1</BorderlessItem>
+          <BorderlessItem>하위카테고리2</BorderlessItem>
+          <BorderlessItem>하위카테고리3</BorderlessItem>
+        </ListGroup>
+      </ListGroup.Item>
+    </ListGroup>
   );
 };
 
