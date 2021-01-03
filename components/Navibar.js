@@ -19,11 +19,11 @@ const Navibar = () => {
       <Nav.Item>
         <Nav.Link eventKey="link-2">항목2</Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      {/* <Nav.Item>
         <Nav.Link eventKey="disabled" disabled>
           Disabled
         </Nav.Link>
-      </Nav.Item>
+      </Nav.Item> */}
     </MarginNav>
   );
 };

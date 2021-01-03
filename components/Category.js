@@ -18,6 +18,9 @@ const Category = () => {
   return (
     <ListGroup >
       <BorderlessTitleItem>
+        전체글
+      </BorderlessTitleItem>
+      <BorderlessTitleItem>
         카테고리1
         <ListGroup>
           <BorderlessItem>카테고리1</BorderlessItem>
