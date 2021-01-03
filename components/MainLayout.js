@@ -4,10 +4,14 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Navibar from './Navibar';
 import Category from './Category';
 import BoardTable from './BoardTable';
+import Header from './Header';
 
 const MainLayout = () => {
   return (
-    <Container fluid>
+    <Container>
+      <Row>
+        <Col><Header /></Col>
+      </Row>
       <Row>
         <Col><Navibar /></Col>
       </Row>

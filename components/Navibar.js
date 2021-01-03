@@ -1,20 +1,30 @@
 import React from 'react';
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import { Nav } from 'react-bootstrap';
+
+const MarginNav = styled(Nav)`
+  margin-top: 5px;
+  margin-bottom: 10px;
+`;
 
 const Navibar = () => {
   return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
-      </Nav>
-      <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-info">Search</Button>
-      </Form>
-    </Navbar>
+    <MarginNav variant="tabs" defaultActiveKey="home">
+      <Nav.Item>
+        <Nav.Link eventKey="home">홈</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-1">항목1</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-2">항목2</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="disabled" disabled>
+          Disabled
+        </Nav.Link>
+      </Nav.Item>
+    </MarginNav>
   );
 };
 
