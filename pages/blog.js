@@ -1,13 +1,13 @@
 import React from 'react';
-import HomeComponent from '../components/HomeComponent';
+import BlogComponent from '../components/BlogComponent';
 import MainLayout from '../components/MainLayout';
 
-const Index = () => {
+const Blog = () => {
   return (
     <MainLayout>
-      <HomeComponent />
+      <BlogComponent />
     </MainLayout>
   );
 }
 
-export default Index;
+export default Blog;

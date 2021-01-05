@@ -1,26 +1,22 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap'
-import Navibar from './Navibar';
-import Category from './Category';
-import BoardTable from './BoardTable';
 import Header from './Header';
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
     <Container>
       <Row>
         <Col><Header /></Col>
       </Row>
-      <Row>
-        <Col><Navibar /></Col>
-      </Row>
-      <Row>
-        <Col sm={2}><Category /></Col>
-        <Col sm={10}><BoardTable /></Col>
-      </Row>
+      {children}
     </Container>
   );
+};
+
+MainLayout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default MainLayout;
