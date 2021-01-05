@@ -7,18 +7,26 @@ const MarginNavbar = styled(Navbar)`
   margin-bottom: 10px;
 `;
 
-const NoStyleLink = styled(Link)`
-  text-decoration: none;
-`;
-
 const Header = () => {
   return (
     <>
       <MarginNavbar bg="dark" variant="dark">
-        <Navbar.Brand><Link href="/">잡동사니</Link></Navbar.Brand>
+        <Link href="/" passHref>
+          <Navbar.Brand>
+            잡동사니
+          </Navbar.Brand>
+        </Link>
         <Nav className="mr-auto">
-          <Nav.Link><Link href="/">Home</Link></Nav.Link>
-          <Nav.Link><Link href="/blog">Blog</Link></Nav.Link>
+          <Link href="/" passHref>
+            <Nav.Link>
+              Home
+            </Nav.Link>
+          </Link>
+          <Link href="/blog" passHref>
+            <Nav.Link>
+              Blog
+            </Nav.Link>
+          </Link>
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
