@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
+import { Button, Nav, Navbar } from 'react-bootstrap';
 
 const MarginNavbar = styled(Navbar)`
   margin-bottom: 10px;
@@ -19,19 +19,21 @@ const Header = () => {
         <Nav className="mr-auto">
           <Link href="/" passHref>
             <Nav.Link>
-              Home
+              홈
             </Nav.Link>
           </Link>
           <Link href="/blog" passHref>
             <Nav.Link>
-              Blog
+              블로그
             </Nav.Link>
           </Link>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form>
+        <Link href="/login">
+          <Button variant="outline-info">로그인</Button>
+        </Link>
+        <Link href="/register">
+          <Button variant="outline-info">회원가입</Button>
+        </Link>
       </MarginNavbar>
     </>
   );
