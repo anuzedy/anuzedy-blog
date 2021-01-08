@@ -7,15 +7,13 @@ const SmallImage = styled(Image)`
   height: 30px;
 `;
 
-const ReplyComponent = () => {
-  return (
-    <ListGroup>
-      <ListGroup.Item>
-        <SmallImage src="/pngegg.png" roundedCircle />
-        아이디 댓글내용
-      </ListGroup.Item>
-    </ListGroup>
-  );
-}
+const ReplyComponent = () => (
+  <ListGroup>
+    <ListGroup.Item>
+      <SmallImage src="/pngegg.png" roundedCircle />
+      아이디 댓글내용
+    </ListGroup.Item>
+  </ListGroup>
+);
 
 export default ReplyComponent;

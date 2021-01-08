@@ -7,21 +7,19 @@ const MarginRow = styled(Row)`
   margin-bottom: 10px;
 `;
 
-const HomeComponent = () => {
-  return (
-    <>
-      <MarginRow>
-        <Col className="text-center">
-          <Image src='/shf.gif' fluid />
-        </Col>
-      </MarginRow>
-      <MarginRow>
-        <Col>
-          <NoticeTable />
-        </Col>
-      </MarginRow>
-    </>
-  );
-}
+const HomeComponent = () => (
+  <>
+    <MarginRow>
+      <Col className="text-center">
+        <Image src="/shf.gif" fluid />
+      </Col>
+    </MarginRow>
+    <MarginRow>
+      <Col>
+        <NoticeTable />
+      </Col>
+    </MarginRow>
+  </>
+);
 
 export default HomeComponent;
