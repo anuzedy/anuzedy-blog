@@ -9,11 +9,13 @@ function* register(action) {
       data: action.data,
     });
     console.log(action.data);
+    alert('가입 성공');
   } catch (error) {
     yield put({
       type: REGISTER_FAILURE,
       data: error.response.data,
     });
+    alert('오류');
   }
 }
 
