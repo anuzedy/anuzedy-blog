@@ -1,4 +1,5 @@
 import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
+import Router from 'next/router';
 import { REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from '../reducers/register';
 
 function* register(action) {
@@ -10,6 +11,7 @@ function* register(action) {
     });
     console.log(action.data);
     alert('가입 성공');
+    Router.push('/login');
   } catch (error) {
     yield put({
       type: REGISTER_FAILURE,

@@ -1,3 +1,5 @@
+import produce from 'immer';
+
 const initialState = {
   email: '',
   password: '',
@@ -15,29 +17,25 @@ export const registerRequest = (data) => ({
   data,
 });
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case REGISTER_REQUEST:
-      return {
-        ...state,
-        registerLoading: true,
-      };
-    case REGISTER_SUCCESS:
-      return {
-        ...state,
-        registerLoading: false,
-        registerComplete: true,
-      };
-    case REGISTER_FAILURE:
-      return {
-        ...state,
-        registerLoading: false,
-        registerComplete: false,
-        registerError: true,
-      };
-    default:
-      return state;
-  }
-};
+const reducer = (state = initialState, action) => (
+  produce(state, (draft) => {
+    switch (action.type) {
+      case REGISTER_REQUEST:
+        draft.registerLoading = true;
+        break;
+      case REGISTER_SUCCESS:
+        draft.registerLoading = false;
+        draft.registerComplete = true;
+        break;
+      case REGISTER_FAILURE:
+        draft.registerLoading = false;
+        draft.registerComplete = false;
+        draft.registerError = true;
+        break;
+      default:
+        break;
+    }
+  })
+);
 
 export default reducer;
