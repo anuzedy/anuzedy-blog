@@ -1,6 +1,7 @@
 import { HYDRATE } from 'next-redux-wrapper';
 import { combineReducers } from 'redux';
 import register from './register';
+import login from './login';
 
 const rootReducer = combineReducers({
   index: (state = {}, action) => {
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     }
   },
   register,
+  login,
 });
 
 export default rootReducer;
