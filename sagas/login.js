@@ -7,7 +7,14 @@ function* login(action) {
     yield delay(1000);
     yield put({
       type: LOGIN_SUCCESS,
-      data: action.data,
+      data: {
+        id: action.data.email,
+        User: {
+          id: 'anuzedy',
+          nickname: 'anuzedy',
+          thumbnail: '/pngegg.png',
+        },
+      },
     });
     console.log(action.data);
     Router.push('/');

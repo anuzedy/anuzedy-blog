@@ -1,6 +1,7 @@
 import produce from 'immer';
 
 const initialState = {
+  id: '',
   User: {
     id: '',
     nickname: '',
@@ -16,6 +17,11 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
+export const loginRequest = (data) => ({
+  type: LOGIN_REQUEST,
+  data,
+});
+
 const reducer = (state = initialState, action) => (
   produce(state, (draft) => {
     switch (action.type) {
@@ -25,6 +31,7 @@ const reducer = (state = initialState, action) => (
       case LOGIN_SUCCESS:
         draft.loginLoading = false;
         draft.loginComplete = true;
+        draft.id = action.data.id;
         draft.User = action.data.User;
         break;
       case LOGIN_FAILURE:
