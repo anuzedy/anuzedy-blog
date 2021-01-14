@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { Button, Nav, Navbar } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { Button, Nav, Navbar, Spinner } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutRequest } from '../reducers/login';
 
 const MarginNavbar = styled(Navbar)`
   margin-bottom: 10px;
 `;
 
+const StyledDiv = styled.div`
+  color: white;
+`;
+
 const Header = () => {
-  const { id } = useSelector((state) => state.login);
+  const dispatch = useDispatch();
+  const { id, logoutLoading } = useSelector((state) => state.login);
   const { nickname, thumbnail } = useSelector((state) => state.login.User);
+  const onLogoutButton = useCallback(() => {
+    dispatch(logoutRequest);
+  }, []);
   const RightMenu = () => {
     if (id) {
-      return <div>{nickname}님 안녕하세요.</div>;
+      return (
+        <>
+          <StyledDiv>{nickname}님 안녕하세요.</StyledDiv>&nbsp;
+          <Button variant="light" onClick={onLogoutButton} disabled={logoutLoading}>
+            { logoutLoading
+              ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+              : '로그아웃' }
+          </Button>
+        </>
+      );
     }
 
     return (
       <>
         <Link href="/login">
-          <Button variant="outline-info">로그인</Button>
-        </Link>
+          <Button variant="dark">로그인</Button>
+        </Link>&nbsp;
         <Link href="/register">
-          <Button variant="outline-info">회원가입</Button>
+          <Button variant="dark">회원가입</Button>
         </Link>
       </>
     );
