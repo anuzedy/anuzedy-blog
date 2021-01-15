@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ListGroup } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 const BorderlessTitleItem = styled(ListGroup.Item)`
   border: none;
@@ -14,36 +15,23 @@ const BorderlessItem = styled(ListGroup.Item)`
   font-size: small;
 `;
 
-const Category = () => (
-  <ListGroup>
-    <BorderlessTitleItem>
-      전체글
-    </BorderlessTitleItem>
-    <BorderlessTitleItem>
-      카테고리1
-      <ListGroup>
-        <BorderlessItem>카테고리1</BorderlessItem>
-        <BorderlessItem>카테고리2</BorderlessItem>
-        <BorderlessItem>카테고리3</BorderlessItem>
-      </ListGroup>
-    </BorderlessTitleItem>
-    <BorderlessTitleItem>
-      카테고리2
-      <ListGroup>
-        <BorderlessItem>카테고리1</BorderlessItem>
-        <BorderlessItem>카테고리2</BorderlessItem>
-        <BorderlessItem>카테고리3</BorderlessItem>
-      </ListGroup>
-    </BorderlessTitleItem>
-    <BorderlessTitleItem>
-      카테고리3
-      <ListGroup>
-        <BorderlessItem>카테고리1</BorderlessItem>
-        <BorderlessItem>카테고리2</BorderlessItem>
-        <BorderlessItem>카테고리3</BorderlessItem>
-      </ListGroup>
-    </BorderlessTitleItem>
-  </ListGroup>
-);
+const Category = () => {
+  const { categories } = useSelector((state) => state.category);
+  return (
+    <ListGroup>
+      <BorderlessTitleItem>
+        전체글
+      </BorderlessTitleItem>
+      { categories.map((v) => (
+        <BorderlessTitleItem>
+          { v.name }
+          <ListGroup>
+            <BorderlessItem>{ v.Child.name }</BorderlessItem>
+          </ListGroup>
+        </BorderlessTitleItem>
+      )) }
+    </ListGroup>
+  );
+};
 
 export default Category;
