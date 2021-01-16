@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ListGroup } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { cateroryRequest } from '../reducers/category';
 
 const BorderlessTitleItem = styled(ListGroup.Item)`
   border: none;
@@ -16,14 +17,21 @@ const BorderlessItem = styled(ListGroup.Item)`
 `;
 
 const Category = () => {
+  const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
+
+  useEffect(() => {
+    dispatch(cateroryRequest);
+  }, []);
+
+  console.log(categories);
   return (
     <ListGroup>
       <BorderlessTitleItem>
         전체글
       </BorderlessTitleItem>
       { categories.map((v) => (
-        <BorderlessTitleItem>
+        <BorderlessTitleItem key={v.id}>
           { v.name }
           <ListGroup>
             <BorderlessItem>{ v.Child.name }</BorderlessItem>

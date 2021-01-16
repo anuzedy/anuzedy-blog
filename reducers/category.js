@@ -22,6 +22,10 @@ export const CATEGORY_REQUEST = 'CATEGORY_REQUEST';
 export const CATEGORY_SUCCESS = 'CATEGORY_SUCCESS';
 export const CATEGORY_FAILURE = 'CATEGORY_FAILURE';
 
+export const cateroryRequest = {
+  type: CATEGORY_REQUEST,
+};
+
 const reducer = (state = initialState, action) => (
   produce(state, (draft) => {
     switch (action.type) {
@@ -31,7 +35,7 @@ const reducer = (state = initialState, action) => (
       case CATEGORY_SUCCESS:
         draft.categoryLoading = false;
         draft.categoryComplete = true;
-        draft.categories.unshift(getDummyCategory(2));
+        draft.categories = draft.categories.concat(getDummyCategory(2));
         break;
       case CATEGORY_FAILURE:
         draft.categoryLoading = false;
