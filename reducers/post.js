@@ -2,12 +2,12 @@ import produce from 'immer';
 import shortId from 'shortid';
 
 const initialState = {
-  Posts: {
+  Posts: [{
     id: shortId.generate(),
     title: '첫번째 타이틀',
     content: '첫번째 내용',
     Comments: [],
-  },
+  }],
   postLoading: false,
   postComplete: false,
   postError: false,
@@ -30,7 +30,7 @@ export const postRequest = (data) => ({
 });
 
 export const postGetRequest = (data) => ({
-  type: POST_REQUEST,
+  type: POST_GET_REQUEST,
   data,
 });
 

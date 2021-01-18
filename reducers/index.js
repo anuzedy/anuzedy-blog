@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import register from './register';
 import login from './login';
 import category from './category';
+import post from './post';
 
 const rootReducer = combineReducers({
   index: (state = {}, action) => {
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   register,
   login,
   category,
+  post,
 });
 
 export default rootReducer;

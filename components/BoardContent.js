@@ -1,19 +1,27 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import ReplyComponent from './ReplyComponent';
 
 const BoardContent = () => {
+  const { Posts } = useSelector((state) => state.post);
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>게시글 제목!</Card.Title>
-        <Card.Text>
-          첫번째 게시물 내용!
-        </Card.Text>
-        <div>댓글 1개</div>
-        <ReplyComponent />
-      </Card.Body>
-    </Card>
+    <>
+      { Posts.map((v) => (
+        <Card key={v.id}>
+          <Card.Body>
+            <Card.Title>{v.title}</Card.Title>
+            <Card.Text>
+              {v.content}
+            </Card.Text>
+            <div>댓글 {v.Comments.length}개</div>
+            { v.Comments.map((c) => (
+              <ReplyComponent comment={c} />
+            )) }
+          </Card.Body>
+        </Card>
+      )) }
+    </>
   );
 };
 
