@@ -6,7 +6,13 @@ const initialState = {
     id: shortId.generate(),
     title: '첫번째 타이틀',
     content: '첫번째 내용',
-    Comments: [],
+    Comments: [{
+      id: '더미아이디',
+      content: '댓글내용',
+    }, {
+      id: '더미아이디2',
+      content: '댓글내용2',
+    }],
   }],
   postLoading: false,
   postComplete: false,

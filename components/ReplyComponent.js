@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image, ListGroup } from 'react-bootstrap';
 
@@ -7,13 +8,17 @@ const SmallImage = styled(Image)`
   height: 30px;
 `;
 
-const ReplyComponent = () => (
+const ReplyComponent = ({ comment }) => (
   <ListGroup>
     <ListGroup.Item>
       <SmallImage src="/pngegg.png" roundedCircle />
-      아이디 댓글내용
+      { comment.id } { comment.content }
     </ListGroup.Item>
   </ListGroup>
 );
+
+ReplyComponent.propTypes = {
+  comment: PropTypes.object.isRequired,
+};
 
 export default ReplyComponent;

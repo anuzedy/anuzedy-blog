@@ -16,7 +16,7 @@ const BoardContent = () => {
             </Card.Text>
             <div>댓글 {v.Comments.length}개</div>
             { v.Comments.map((c) => (
-              <ReplyComponent comment={c} />
+              <ReplyComponent key={c.id} comment={c} />
             )) }
           </Card.Body>
         </Card>
