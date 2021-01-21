@@ -25,7 +25,7 @@ const BoardTable = () => {
           <tbody key={v.id}>
             <tr>
               <td>{i + 1}</td>
-              <td>{v.title}</td>
+              <td><a>{v.title}</a></td>
             </tr>
           </tbody>
         )) }
