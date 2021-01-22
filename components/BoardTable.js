@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardContent from './BoardContent';
@@ -7,6 +7,11 @@ import BoardContent from './BoardContent';
 const BoardTable = () => {
   // const dispatch = useDispatch();
   const { Posts } = useSelector((state) => state.post);
+  const [title, setTitle] = useState('');
+
+  const onClickTitle = useCallback((e) => {
+    setTitle(e.target.value);
+  }, []);
 
   // useEffect(() => {
   //   dispatch(postGetRequest);
@@ -25,12 +30,12 @@ const BoardTable = () => {
           <tbody key={v.id}>
             <tr>
               <td>{i + 1}</td>
-              <td><a>{v.title}</a></td>
+              <td><a href="#" onClick={onClickTitle}>{v.title}</a></td>
             </tr>
           </tbody>
         )) }
       </Table>
-      <BoardContent />
+      <BoardContent title={title} />
     </>
   );
 };
