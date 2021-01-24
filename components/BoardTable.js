@@ -13,9 +13,10 @@ const BoardTable = () => {
     setTitle(e.target.value);
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(postGetRequest);
-  // }, []);
+  useEffect(() => {
+    // dispatch(postGetRequest);
+    setTitle(Posts[0]);
+  }, []);
 
   return (
     <>
