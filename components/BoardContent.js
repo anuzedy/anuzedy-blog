@@ -4,9 +4,9 @@ import { Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import ReplyComponent from './ReplyComponent';
 
-const BoardContent = ({ title }) => {
+const BoardContent = ({ postId }) => {
   const { Posts } = useSelector((state) => state.post);
-  const post = Posts.filter((v) => v.title === title);
+  const post = Posts.filter((v) => v.id === postId)[0] || Posts[0];
   return (
     <Card>
       <Card.Body>
@@ -24,7 +24,7 @@ const BoardContent = ({ title }) => {
 };
 
 BoardContent.propTypes = {
-  title: PropTypes.string.isRequired,
+  postId: PropTypes.string.isRequired,
 };
 
 export default BoardContent;

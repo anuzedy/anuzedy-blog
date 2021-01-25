@@ -13,6 +13,17 @@ const initialState = {
       id: '더미아이디2',
       content: '댓글내용2',
     }],
+  }, {
+    id: shortId.generate(),
+    title: '두번째 타이틀',
+    content: '두번째 내용',
+    Comments: [{
+      id: '더미아이디3',
+      content: '댓글내용3',
+    }, {
+      id: '더미아이디4',
+      content: '댓글내용4',
+    }],
   }],
   postLoading: false,
   postComplete: false,

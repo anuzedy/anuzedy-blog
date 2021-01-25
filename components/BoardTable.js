@@ -7,15 +7,15 @@ import BoardContent from './BoardContent';
 const BoardTable = () => {
   // const dispatch = useDispatch();
   const { Posts } = useSelector((state) => state.post);
-  const [title, setTitle] = useState('');
+  const [postId, setPostId] = useState('');
 
-  const onClickTitle = useCallback((e) => {
-    setTitle(e.target.value);
+  const onClickTitle = useCallback((e, id) => {
+    setPostId(id);
   }, []);
 
   useEffect(() => {
     // dispatch(postGetRequest);
-    setTitle(Posts[0]);
+    setPostId(Posts[0].id);
   }, []);
 
   return (
@@ -31,12 +31,12 @@ const BoardTable = () => {
           <tbody key={v.id}>
             <tr>
               <td>{i + 1}</td>
-              <td><a href="#" onClick={onClickTitle}>{v.title}</a></td>
+              <td><a href="#" onClick={(e) => onClickTitle(e, v.id)}>{v.title}</a></td>
             </tr>
           </tbody>
         )) }
       </Table>
-      <BoardContent title={title} />
+      <BoardContent postId={postId} />
     </>
   );
 };
