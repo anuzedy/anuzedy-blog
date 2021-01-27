@@ -8,7 +8,7 @@ const SmallImage = styled(Image)`
   height: 30px;
 `;
 
-const ReplyComponent = ({ comment }) => (
+const CommentComponent = ({ comment }) => (
   <ListGroup>
     <ListGroup.Item>
       <SmallImage src="/pngegg.png" roundedCircle />
@@ -17,8 +17,8 @@ const ReplyComponent = ({ comment }) => (
   </ListGroup>
 );
 
-ReplyComponent.propTypes = {
+CommentComponent.propTypes = {
   comment: PropTypes.object.isRequired,
 };
 
-export default ReplyComponent;
+export default CommentComponent;
