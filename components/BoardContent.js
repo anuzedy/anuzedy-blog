@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Button, Card, Form } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CommentComponent from './CommentComponent';
 import useInput from '../hooks/useInput';
+import { commentRequest } from '../reducers/post';
 
 const StyledForm = styled(Form)`
   text-align: center;
 `;
 
 const BoardContent = ({ postId }) => {
+  const dispatch = useDispatch();
   const { Posts } = useSelector((state) => state.post);
   const post = Posts.filter((v) => v.id === postId)[0] || Posts[0];
   const [comment, onChangeComment] = useInput('');
+  const onClickButton = useCallback(() => {
+    dispatch(commentRequest({
+      id: post.id,
+      comment: {
+        id: '아이디',
+        content: '댓글',
+      },
+    }));
+  }, []);
+
   return (
     <Card>
       <Card.Body>
@@ -29,7 +41,7 @@ const BoardContent = ({ postId }) => {
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Control as="textarea" rows={3} onChange={onChangeComment} />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={onClickButton}>
             입력
           </Button>
         </StyledForm>

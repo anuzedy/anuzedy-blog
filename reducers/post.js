@@ -31,6 +31,9 @@ const initialState = {
   postGetLoading: false,
   postGetComplete: false,
   postGetError: false,
+  commentLoading: false,
+  commentComplete: false,
+  commentError: false,
 };
 
 export const POST_REQUEST = 'POST_REQUEST';
@@ -41,6 +44,10 @@ export const POST_GET_REQUEST = 'POST_REQUEST';
 export const POST_GET_SUCCESS = 'POST_SUCCESS';
 export const POST_GET_FAILURE = 'POST_FAILURE';
 
+export const COMMENT_REQUEST = 'COMMENT_REQUEST';
+export const COMMENT_SUCCESS = 'COMMENT_SUCCESS';
+export const COMMENT_FAILURE = 'COMMENT_FAILURE';
+
 export const postRequest = (data) => ({
   type: POST_REQUEST,
   data,
@@ -48,6 +55,11 @@ export const postRequest = (data) => ({
 
 export const postGetRequest = (data) => ({
   type: POST_GET_REQUEST,
+  data,
+});
+
+export const commentRequest = (data) => ({
+  type: COMMENT_REQUEST,
   data,
 });
 
@@ -77,6 +89,20 @@ const reducer = (state = initialState, action) => (
       case POST_GET_FAILURE:
         draft.postGetLoading = false;
         draft.postGetError = true;
+        break;
+      case COMMENT_REQUEST:
+        draft.commentLoading = true;
+        break;
+      case COMMENT_SUCCESS:
+        draft.commentLoading = false;
+        draft.commentComplete = true;
+        draft.Posts.filter((v) => v.id
+          === action.data.postId).Comments = draft.Posts.filter((v) => v.id === action.data.postId)
+          .Comments.concat(action.data.comment);
+        break;
+      case COMMENT_FAILURE:
+        draft.commentLoading = false;
+        draft.commentError = true;
         break;
       default:
         break;
