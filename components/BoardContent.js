@@ -21,10 +21,10 @@ const BoardContent = ({ postId }) => {
       id: post.id,
       comment: {
         id: '아이디',
-        content: '댓글',
+        content: comment,
       },
     }));
-  }, []);
+  }, [comment]);
 
   return (
     <Card>
