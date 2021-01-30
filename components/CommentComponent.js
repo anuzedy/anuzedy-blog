@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Image, ListGroup } from 'react-bootstrap';
@@ -8,14 +8,14 @@ const SmallImage = styled(Image)`
   height: 30px;
 `;
 
-const CommentComponent = ({ comment }) => (
+const CommentComponent = memo(({ comment }) => (
   <ListGroup>
     <ListGroup.Item>
       <SmallImage src="/pngegg.png" roundedCircle />
-      { comment.id } { comment.content }
+      { comment.userId } { comment.content }
     </ListGroup.Item>
   </ListGroup>
-);
+));
 
 CommentComponent.propTypes = {
   comment: PropTypes.object.isRequired,

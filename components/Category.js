@@ -24,7 +24,6 @@ const Category = () => {
     dispatch(cateroryRequest);
   }, []);
 
-  console.log(categories);
   return (
     <ListGroup>
       <BorderlessTitleItem>

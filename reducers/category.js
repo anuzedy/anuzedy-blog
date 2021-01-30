@@ -31,6 +31,7 @@ const reducer = (state = initialState, action) => (
     switch (action.type) {
       case CATEGORY_REQUEST:
         draft.categoryLoading = true;
+        draft.categoryComplete = false;
         break;
       case CATEGORY_SUCCESS:
         draft.categoryLoading = false;
@@ -39,6 +40,7 @@ const reducer = (state = initialState, action) => (
         break;
       case CATEGORY_FAILURE:
         draft.categoryLoading = false;
+        draft.categoryComplete = false;
         draft.categoryError = true;
         break;
       default:

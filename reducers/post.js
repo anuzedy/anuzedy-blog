@@ -7,10 +7,12 @@ const initialState = {
     title: '첫번째 타이틀',
     content: '첫번째 내용',
     Comments: [{
-      id: '더미아이디',
+      id: shortId.generate(),
+      userId: '더미아이디',
       content: '댓글내용',
     }, {
-      id: '더미아이디2',
+      id: shortId.generate(),
+      userId: '더미아이디2',
       content: '댓글내용2',
     }],
   }, {
@@ -18,10 +20,12 @@ const initialState = {
     title: '두번째 타이틀',
     content: '두번째 내용',
     Comments: [{
-      id: '더미아이디3',
+      id: shortId.generate(),
+      userId: '더미아이디3',
       content: '댓글내용3',
     }, {
-      id: '더미아이디4',
+      id: shortId.generate(),
+      userId: '더미아이디4',
       content: '댓글내용4',
     }],
   }],
@@ -60,7 +64,13 @@ export const postGetRequest = (data) => ({
 
 export const commentRequest = (data) => ({
   type: COMMENT_REQUEST,
-  data,
+  data: {
+    ...data,
+    comment: {
+      ...data.comment,
+      id: shortId.generate(),
+    },
+  },
 });
 
 const reducer = (state = initialState, action) => (
@@ -68,6 +78,7 @@ const reducer = (state = initialState, action) => (
     switch (action.type) {
       case POST_REQUEST:
         draft.postLoading = true;
+        draft.postComplete = false;
         break;
       case POST_SUCCESS:
         draft.postLoading = false;
@@ -76,10 +87,12 @@ const reducer = (state = initialState, action) => (
         break;
       case POST_FAILURE:
         draft.postLoading = false;
+        draft.postComplete = false;
         draft.postError = true;
         break;
       case POST_GET_REQUEST:
         draft.postGetLoading = true;
+        draft.postGetComplete = false;
         break;
       case POST_GET_SUCCESS:
         draft.postGetLoading = false;
@@ -88,20 +101,23 @@ const reducer = (state = initialState, action) => (
         break;
       case POST_GET_FAILURE:
         draft.postGetLoading = false;
+        draft.postGetComplete = false;
         draft.postGetError = true;
         break;
       case COMMENT_REQUEST:
         draft.commentLoading = true;
+        draft.commentComplete = false;
         break;
-      case COMMENT_SUCCESS:
+      case COMMENT_SUCCESS: {
+        const post = draft.Posts.find((v) => v.id === action.data.postId);
         draft.commentLoading = false;
         draft.commentComplete = true;
-        draft.Posts.filter((v) => v.id
-          === action.data.postId).Comments = draft.Posts.filter((v) => v.id === action.data.postId)
-          .Comments.concat(action.data.comment);
+        post.Comments.unshift(action.data.comment);
         break;
+      }
       case COMMENT_FAILURE:
         draft.commentLoading = false;
+        draft.commentComplete = false;
         draft.commentError = true;
         break;
       default:

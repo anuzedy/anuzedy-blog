@@ -22,6 +22,7 @@ const reducer = (state = initialState, action) => (
     switch (action.type) {
       case REGISTER_REQUEST:
         draft.registerLoading = true;
+        draft.registerComplete = false;
         break;
       case REGISTER_SUCCESS:
         draft.registerLoading = false;

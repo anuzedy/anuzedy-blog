@@ -48,7 +48,6 @@ function* comment(action) {
       type: COMMENT_SUCCESS,
       data: action.data,
     });
-    console.log(action.data);
   } catch (error) {
     yield put({
       type: COMMENT_FAILURE,
@@ -61,7 +60,7 @@ function* watchComment() {
   yield takeLatest(COMMENT_REQUEST, comment);
 }
 
-export default function* loginSaga() {
+export default function* postSaga() {
   yield all([
     fork(watchPost),
     fork(watchPostGet),
