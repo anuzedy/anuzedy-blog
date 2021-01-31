@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => (
       case CATEGORY_SUCCESS:
         draft.categoryLoading = false;
         draft.categoryComplete = true;
-        draft.categories = draft.categories.concat(getDummyCategory(2));
+        draft.categories = action.data;
         break;
       case CATEGORY_FAILURE:
         draft.categoryLoading = false;
