@@ -14,8 +14,10 @@ const PostInputComponent = () => {
   return (
     <Card style={{ width: '18rem' }}>
       <StyledForm onSubmit={onSubmit}>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Example textarea</Form.Label>
+        <Form.Group controlId="postSubject">
+          <Form.Control type="text" placeholder="제목" />
+        </Form.Group>
+        <Form.Group controlId="postContent">
           <Form.Control as="textarea" rows={8} />
         </Form.Group>
         <Button variant="primary">글쓰기</Button>
