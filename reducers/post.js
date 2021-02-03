@@ -29,6 +29,7 @@ const initialState = {
       content: '댓글내용4',
     }],
   }],
+  writeMode: false,
   postLoading: false,
   postComplete: false,
   postError: false,
@@ -44,21 +45,14 @@ export const POST_REQUEST = 'POST_REQUEST';
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const POST_FAILURE = 'POST_FAILURE';
 
-export const POST_GET_REQUEST = 'POST_REQUEST';
-export const POST_GET_SUCCESS = 'POST_SUCCESS';
-export const POST_GET_FAILURE = 'POST_FAILURE';
-
 export const COMMENT_REQUEST = 'COMMENT_REQUEST';
 export const COMMENT_SUCCESS = 'COMMENT_SUCCESS';
 export const COMMENT_FAILURE = 'COMMENT_FAILURE';
 
+export const CHANGE_WRITE_MODE = 'CHANGE_WRITE_MODE';
+
 export const postRequest = (data) => ({
   type: POST_REQUEST,
-  data,
-});
-
-export const postGetRequest = (data) => ({
-  type: POST_GET_REQUEST,
   data,
 });
 
@@ -71,6 +65,11 @@ export const commentRequest = (data) => ({
       id: shortId.generate(),
     },
   },
+});
+
+export const changeWriteMode = (data) => ({
+  type: CHANGE_WRITE_MODE,
+  data,
 });
 
 const reducer = (state = initialState, action) => (
@@ -90,20 +89,6 @@ const reducer = (state = initialState, action) => (
         draft.postComplete = false;
         draft.postError = true;
         break;
-      case POST_GET_REQUEST:
-        draft.postGetLoading = true;
-        draft.postGetComplete = false;
-        break;
-      case POST_GET_SUCCESS:
-        draft.postGetLoading = false;
-        draft.postGetComplete = true;
-        draft.Posts = action.data;
-        break;
-      case POST_GET_FAILURE:
-        draft.postGetLoading = false;
-        draft.postGetComplete = false;
-        draft.postGetError = true;
-        break;
       case COMMENT_REQUEST:
         draft.commentLoading = true;
         draft.commentComplete = false;
@@ -119,6 +104,9 @@ const reducer = (state = initialState, action) => (
         draft.commentLoading = false;
         draft.commentComplete = false;
         draft.commentError = true;
+        break;
+      case CHANGE_WRITE_MODE:
+        draft.writeMode = action.data;
         break;
       default:
         break;

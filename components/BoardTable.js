@@ -1,20 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardContent from './BoardContent';
-// import { postGetRequest } from '../reducers/post';
+import PostInputComponent from './PostInputComponent';
+import { changeWriteMode } from '../reducers/post';
 
 const BoardTable = () => {
-  // const dispatch = useDispatch();
-  const { Posts } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+  const { Posts, writeMode } = useSelector((state) => state.post);
   const [postId, setPostId] = useState('');
 
   const onClickTitle = useCallback((e, id) => {
     setPostId(id);
+    dispatch(changeWriteMode(false));
   }, []);
 
+  const onClickWrite = useCallback(() => {
+    dispatch(changeWriteMode(true));
+  }, [writeMode]);
+
   useEffect(() => {
-    // dispatch(postGetRequest);
     setPostId(Posts[0].id);
   }, []);
 
@@ -36,7 +41,14 @@ const BoardTable = () => {
           </tbody>
         )) }
       </Table>
-      <BoardContent postId={postId} />
+      { writeMode
+        ? <PostInputComponent />
+        : (
+          <>
+            <BoardContent postId={postId} /><br />
+            <Button variant="primary" style={{ float: 'right' }} onClick={onClickWrite}>글쓰기</Button>
+          </>
+        )}
     </>
   );
 };
