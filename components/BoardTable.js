@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardContent from './BoardContent';
-import PostInputComponent from './PostInputComponent';
+import PostWriteComponent from './PostWriteComponent';
 import { changeWriteMode } from '../reducers/post';
 
 const BoardTable = () => {
@@ -42,7 +42,7 @@ const BoardTable = () => {
         )) }
       </Table>
       { writeMode
-        ? <PostInputComponent />
+        ? <PostWriteComponent />
         : (
           <>
             <BoardContent postId={postId} /><br />

@@ -33,6 +33,9 @@ const initialState = {
   postLoading: false,
   postComplete: false,
   postError: false,
+  postWriteLoading: false,
+  postWriteComplete: false,
+  postWriteError: false,
   postGetLoading: false,
   postGetComplete: false,
   postGetError: false,
@@ -45,6 +48,10 @@ export const POST_REQUEST = 'POST_REQUEST';
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const POST_FAILURE = 'POST_FAILURE';
 
+export const POST_WRITE_REQUEST = 'POST_WRITE_REQUEST';
+export const POST_WRITE_SUCCESS = 'POST_WRITE_SUCCESS';
+export const POST_WRITE_FAILURE = 'POST_WRITE_FAILURE';
+
 export const COMMENT_REQUEST = 'COMMENT_REQUEST';
 export const COMMENT_SUCCESS = 'COMMENT_SUCCESS';
 export const COMMENT_FAILURE = 'COMMENT_FAILURE';
@@ -54,6 +61,16 @@ export const CHANGE_WRITE_MODE = 'CHANGE_WRITE_MODE';
 export const postRequest = (data) => ({
   type: POST_REQUEST,
   data,
+});
+
+export const postWriteRequest = (data) => ({
+  type: POST_WRITE_REQUEST,
+  data: {
+    id: shortId.generate(),
+    title: data.title,
+    content: data.content,
+    Comments: [],
+  },
 });
 
 export const commentRequest = (data) => ({
@@ -87,6 +104,20 @@ const reducer = (state = initialState, action) => (
       case POST_FAILURE:
         draft.postLoading = false;
         draft.postComplete = false;
+        draft.postError = true;
+        break;
+      case POST_WRITE_REQUEST:
+        draft.postWriteLoading = true;
+        draft.postWriteComplete = false;
+        break;
+      case POST_WRITE_SUCCESS:
+        draft.postWriteLoading = false;
+        draft.postWriteComplete = true;
+        draft.Posts.unshift(action.data);
+        break;
+      case POST_WRITE_FAILURE:
+        draft.postWriteLoading = false;
+        draft.postWriteComplete = false;
         draft.postError = true;
         break;
       case COMMENT_REQUEST:
