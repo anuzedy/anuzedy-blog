@@ -114,6 +114,7 @@ const reducer = (state = initialState, action) => (
         draft.postWriteLoading = false;
         draft.postWriteComplete = true;
         draft.Posts.unshift(action.data);
+        draft.writeMode = false;
         break;
       case POST_WRITE_FAILURE:
         draft.postWriteLoading = false;

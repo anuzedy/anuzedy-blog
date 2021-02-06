@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
 import { POST_REQUEST, POST_SUCCESS, POST_FAILURE,
   POST_WRITE_REQUEST, POST_WRITE_SUCCESS, POST_WRITE_FAILURE,
@@ -31,6 +32,7 @@ function* postWrite(action) {
       data: action.data,
     });
     console.log(action.data);
+    Router.push('/blog');
   } catch (error) {
     yield put({
       type: POST_WRITE_FAILURE,

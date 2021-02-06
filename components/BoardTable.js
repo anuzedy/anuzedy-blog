@@ -21,7 +21,7 @@ const BoardTable = () => {
 
   useEffect(() => {
     setPostId(Posts[0].id);
-  }, []);
+  }, [Posts]);
 
   return (
     <>
