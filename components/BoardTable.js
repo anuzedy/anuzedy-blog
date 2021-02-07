@@ -32,10 +32,10 @@ const BoardTable = () => {
             <th>제목</th>
           </tr>
         </thead>
-        { Posts.map((v, i) => (
+        { Posts.map((v) => (
           <tbody key={v.id}>
             <tr>
-              <td>{i + 1}</td>
+              <td>{v.id}</td>
               <td><a href="#" onClick={(e) => onClickTitle(e, v.id)}>{v.title}</a></td>
             </tr>
           </tbody>
