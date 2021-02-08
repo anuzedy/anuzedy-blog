@@ -12,7 +12,8 @@ const CommentComponent = memo(({ comment }) => (
   <ListGroup>
     <ListGroup.Item>
       <SmallImage src="/pngegg.png" roundedCircle />
-      { comment.userId } { comment.content }
+      { comment.userId }
+      <span style={{ float: 'right' }}>{ comment.content }</span>
     </ListGroup.Item>
   </ListGroup>
 ));
