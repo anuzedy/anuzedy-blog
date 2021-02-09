@@ -9,10 +9,12 @@ const initialState = {
     Comments: [{
       id: shortId.generate(),
       userId: '더미아이디',
+      userIcon: '/pngegg.png',
       content: '댓글내용',
     }, {
       id: shortId.generate(),
       userId: '더미아이디2',
+      userIcon: '/pngegg.png',
       content: '댓글내용2',
     }],
   }, {
@@ -22,10 +24,12 @@ const initialState = {
     Comments: [{
       id: shortId.generate(),
       userId: '더미아이디3',
+      userIcon: '/pngegg.png',
       content: '댓글내용3',
     }, {
       id: shortId.generate(),
       userId: '더미아이디4',
+      userIcon: '/pngegg.png',
       content: '댓글내용4',
     }],
   }],
@@ -80,6 +84,7 @@ export const commentRequest = (data) => ({
     comment: {
       ...data.comment,
       id: shortId.generate(),
+      userIcon: '/pngegg.png',
     },
   },
 });

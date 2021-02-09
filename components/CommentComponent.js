@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Image, ListGroup } from 'react-bootstrap';
+import { Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 
 const SmallImage = styled(Image)`
   width: 30px;
@@ -11,9 +11,16 @@ const SmallImage = styled(Image)`
 const CommentComponent = memo(({ comment }) => (
   <ListGroup>
     <ListGroup.Item>
-      <SmallImage src="/pngegg.png" roundedCircle />
-      { comment.userId }
-      <span style={{ float: 'right' }}>{ comment.content }</span>
+      <Container fluid>
+        <Row>
+          <Col sm={3}>
+            <SmallImage src="/pngegg.png" roundedCircle />{ comment.userId }
+          </Col>
+          <Col sm={9}>
+            { comment.content }
+          </Col>
+        </Row>
+      </Container>
     </ListGroup.Item>
   </ListGroup>
 ));
