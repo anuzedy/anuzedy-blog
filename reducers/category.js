@@ -3,6 +3,7 @@ import shortId from 'shortid';
 
 const initialState = {
   categories: [],
+  recentCategory: {},
   categoryLoading: false,
   categoryComplete: false,
   categoryError: false,
