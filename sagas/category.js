@@ -6,7 +6,7 @@ function* category() {
     yield delay(1000);
     yield put({
       type: CATEGORY_SUCCESS,
-      data: getDummyCategory(2),
+      data: getDummyCategory(1),
     });
   } catch (error) {
     yield put({

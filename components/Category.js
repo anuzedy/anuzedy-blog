@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ListGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { cateroryRequest } from '../reducers/category';
+import { cateroryRequest, allPostCategory } from '../reducers/category';
 
 const BorderlessTitleItem = styled(ListGroup.Item)`
   border: none;
@@ -24,10 +24,15 @@ const Category = () => {
     dispatch(cateroryRequest);
   }, []);
 
+  const onClickAllPost = (e) => {
+    e.preventDefault();
+    dispatch(allPostCategory);
+  };
+
   return (
     <ListGroup>
       <BorderlessTitleItem>
-        전체글
+        <a href="#" onClick={(e) => onClickAllPost(e)}>전체글</a>
       </BorderlessTitleItem>
       { categories.map((v) => (
         <BorderlessTitleItem key={v.id}>

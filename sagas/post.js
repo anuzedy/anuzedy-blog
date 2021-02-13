@@ -6,12 +6,43 @@ import { POST_REQUEST, POST_SUCCESS, POST_FAILURE,
 
 function* post(action) {
   try {
-    yield delay(1000);
-    yield put({
-      type: POST_SUCCESS,
-      data: action.data,
-    });
-    console.log(action.data);
+    if (action.data === 0) {
+      yield delay(1000);
+      yield put({
+        type: POST_SUCCESS,
+        data: [{
+          id: 1,
+          title: '첫번째 타이틀',
+          content: '첫번째 내용',
+          Comments: [{
+            id: 1,
+            userId: '더미아이디',
+            userIcon: '/pngegg.png',
+            content: '댓글내용',
+          }, {
+            id: 2,
+            userId: '더미아이디2',
+            userIcon: '/pngegg.png',
+            content: '댓글내용2',
+          }],
+        }, {
+          id: 2,
+          title: '두번째 타이틀',
+          content: '두번째 내용',
+          Comments: [{
+            id: 3,
+            userId: '더미아이디3',
+            userIcon: '/pngegg.png',
+            content: '댓글내용3',
+          }, {
+            id: 4,
+            userId: '더미아이디4',
+            userIcon: '/pngegg.png',
+            content: '댓글내용4',
+          }],
+        }],
+      });
+    }
   } catch (error) {
     yield put({
       type: POST_FAILURE,
