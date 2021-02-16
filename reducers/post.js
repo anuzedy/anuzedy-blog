@@ -6,6 +6,7 @@ const initialState = {
     id: shortId.generate(),
     title: '첫번째 타이틀',
     content: '첫번째 내용',
+    categoryId: '2',
     Comments: [{
       id: shortId.generate(),
       userId: '더미아이디',
@@ -21,6 +22,7 @@ const initialState = {
     id: shortId.generate(),
     title: '두번째 타이틀',
     content: '두번째 내용',
+    categoryId: '4',
     Comments: [{
       id: shortId.generate(),
       userId: '더미아이디3',

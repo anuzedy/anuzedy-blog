@@ -9,15 +9,23 @@ const initialState = {
   categoryError: false,
 };
 
-export const getDummyCategory = (number) => Array(number).fill().map(() => ({
-  id: 2,
+export const getDummyCategory = [{
+  id: 1,
   name: 'IT',
   Child: {
-    id: 3,
+    id: 2,
     name: 'Javascript',
     Child: {},
   },
-}));
+}, {
+  id: 3,
+  name: '기타',
+  Child: {
+    id: 4,
+    name: '잡동사니',
+    Child: {},
+  },
+}];
 
 export const ALL_POST_CATEGORY_REQUEST = 'ALL_POST_CATEGORY_REQUEST';
 
