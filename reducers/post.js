@@ -73,6 +73,7 @@ export const postWriteRequest = (data) => ({
   type: POST_WRITE_REQUEST,
   data: {
     id: shortId.generate(),
+    categoryId: data.categoryId,
     title: data.title,
     content: data.content,
     Comments: [],
