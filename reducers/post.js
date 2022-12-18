@@ -2,40 +2,9 @@ import produce from 'immer';
 import shortId from 'shortid';
 
 const initialState = {
-  Posts: [{
-    id: shortId.generate(),
-    title: '첫번째 타이틀',
-    content: '첫번째 내용',
-    categoryId: '2',
-    Comments: [{
-      id: shortId.generate(),
-      userId: '더미아이디',
-      userIcon: '/pngegg.png',
-      content: '댓글내용',
-    }, {
-      id: shortId.generate(),
-      userId: '더미아이디2',
-      userIcon: '/pngegg.png',
-      content: '댓글내용2',
-    }],
-  }, {
-    id: shortId.generate(),
-    title: '두번째 타이틀',
-    content: '두번째 내용',
-    categoryId: '4',
-    Comments: [{
-      id: shortId.generate(),
-      userId: '더미아이디3',
-      userIcon: '/pngegg.png',
-      content: '댓글내용3',
-    }, {
-      id: shortId.generate(),
-      userId: '더미아이디4',
-      userIcon: '/pngegg.png',
-      content: '댓글내용4',
-    }],
-  }],
-  writeMode: false,
+  Posts: [],
+  recentId: 0,
+  recentPost: {},
   postLoading: false,
   postComplete: false,
   postError: false,
@@ -62,7 +31,41 @@ export const COMMENT_REQUEST = 'COMMENT_REQUEST';
 export const COMMENT_SUCCESS = 'COMMENT_SUCCESS';
 export const COMMENT_FAILURE = 'COMMENT_FAILURE';
 
-export const CHANGE_WRITE_MODE = 'CHANGE_WRITE_MODE';
+export const SET_RECENT_ID = 'SET_RECENT_ID';
+
+export const getDummyPost = () => ([{
+  id: 1,
+  title: '첫번째 타이틀',
+  content: '첫번째 내용',
+  categoryId: 2,
+  Comments: [{
+    id: 1,
+    userId: '더미아이디',
+    userIcon: '/pngegg.png',
+    content: '댓글내용',
+  }, {
+    id: 2,
+    userId: '더미아이디2',
+    userIcon: '/pngegg.png',
+    content: '댓글내용2',
+  }],
+}, {
+  id: 2,
+  title: '두번째 타이틀',
+  content: '두번째 내용',
+  categoryId: 4,
+  Comments: [{
+    id: 3,
+    userId: '더미아이디3',
+    userIcon: '/pngegg.png',
+    content: '댓글내용3',
+  }, {
+    id: 4,
+    userId: '더미아이디4',
+    userIcon: '/pngegg.png',
+    content: '댓글내용4',
+  }],
+}]);
 
 export const postRequest = (data) => ({
   type: POST_REQUEST,
@@ -92,8 +95,8 @@ export const commentRequest = (data) => ({
   },
 });
 
-export const changeWriteMode = (data) => ({
-  type: CHANGE_WRITE_MODE,
+export const setRecentId = (data) => ({
+  type: SET_RECENT_ID,
   data,
 });
 
@@ -108,6 +111,8 @@ const reducer = (state = initialState, action) => (
         draft.postLoading = false;
         draft.postComplete = true;
         draft.Posts = action.data;
+        draft.recentId = action.data[0].id;
+        draft.recentPost = action.data[0];
         break;
       case POST_FAILURE:
         draft.postLoading = false;
@@ -145,8 +150,9 @@ const reducer = (state = initialState, action) => (
         draft.commentComplete = false;
         draft.commentError = true;
         break;
-      case CHANGE_WRITE_MODE:
-        draft.writeMode = action.data;
+      case SET_RECENT_ID:
+        draft.recentId = action.data;
+        draft.recentPost = draft.Posts.find((v) => v.id === action.data);
         break;
       default:
         break;

@@ -11,10 +11,10 @@ const StyledForm = styled(Form)`
   text-align: center;
 `;
 
-const BoardContent = ({ postId }) => {
+const BoardContent = () => {
   const dispatch = useDispatch();
-  const { Posts, commentLoading, commentComplete } = useSelector((state) => state.post);
-  const post = Posts.filter((v) => v.id === postId)[0] || Posts[0];
+  const { recentId, recentPost, commentLoading, commentComplete } = useSelector((state) => state.post);
+  console.log('rec : ', recentId);
   const [comment, onChangeComment, setComment] = useInput('');
 
   useEffect(() => {
@@ -37,31 +37,27 @@ const BoardContent = ({ postId }) => {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>{post.title}</Card.Title>
+        <Card.Title>{recentPost.title}</Card.Title>
         <Card.Text>
-          {post.content}
+          {recentPost.content}
         </Card.Text>
-        <div>댓글 {post.Comments.length}개</div>
-        { post.Comments.map((c) => (
+        {/* <div>댓글 {recentPost.Comments.length}개</div>
+        {recentPost.Comments.map((c) => (
           <CommentComponent key={c.id} comment={c} />
-        )) }
+        ))}
         <StyledForm onSubmit={onSubmitForm}>
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Control as="textarea" rows={3} value={comment} onChange={onChangeComment} />
           </Form.Group>
           <Button variant="primary" type="submit" disabled={commentLoading}>
-            { commentLoading
+            {commentLoading
               ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-              : '입력' }
+              : '입력'}
           </Button>
-        </StyledForm>
+        </StyledForm> */}
       </Card.Body>
     </Card>
   );
-};
-
-BoardContent.propTypes = {
-  postId: PropTypes.string.isRequired,
 };
 
 export default BoardContent;

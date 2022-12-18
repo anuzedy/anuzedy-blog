@@ -20,6 +20,7 @@ const PostWriteComponent = () => {
     dispatch(postWriteRequest({
       title,
       content,
+      categoryId: 1,
     }));
   };
 
@@ -32,9 +33,9 @@ const PostWriteComponent = () => {
         <Form.Control as="textarea" value={content} onChange={onChangeContent} rows={8} />
       </Form.Group>
       <Button variant="primary" type="submit" disabled={postWriteLoading}>
-        { postWriteLoading
+        {postWriteLoading
           ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-          : '글쓰기' }
+          : '글쓰기'}
       </Button>
     </StyledForm>
   );

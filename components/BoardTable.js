@@ -3,30 +3,26 @@ import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardContent from './BoardContent';
 import PostWriteComponent from './PostWriteComponent';
-import { changeWriteMode, postRequest } from '../reducers/post';
+import { postRequest, setRecentId } from '../reducers/post';
 
 const BoardTable = () => {
   const dispatch = useDispatch();
-  const { Posts, writeMode } = useSelector((state) => state.post);
+  const { Posts } = useSelector((state) => state.post);
   const { recentCategory } = useSelector((state) => state.category);
-  const [postId, setPostId] = useState('');
+  const [writeMode, setWriteMode] = useState(false);
 
   const onClickTitle = useCallback((e, id) => {
-    setPostId(id);
-    dispatch(changeWriteMode(false));
+    dispatch(setRecentId(id));
+    setWriteMode(false);
   }, []);
 
   const onClickWrite = useCallback(() => {
-    dispatch(changeWriteMode(true));
+    setWriteMode(true);
   }, [writeMode]);
 
   useEffect(() => {
     dispatch(postRequest(recentCategory));
   }, [recentCategory]);
-
-  useEffect(() => {
-    setPostId(Posts[0].id);
-  }, [Posts]);
 
   return (
     <>
@@ -37,20 +33,20 @@ const BoardTable = () => {
             <th>제목</th>
           </tr>
         </thead>
-        { Posts.map((v) => (
+        {Posts.map((v) => (
           <tbody key={v.id}>
             <tr>
               <td>{v.id}</td>
               <td><a href="#" onClick={(e) => onClickTitle(e, v.id)}>{v.title}</a></td>
             </tr>
           </tbody>
-        )) }
+        ))}
       </Table>
-      { writeMode
+      {writeMode
         ? <PostWriteComponent />
         : (
           <>
-            <BoardContent postId={postId} /><br />
+            <BoardContent /><br />
             <Button variant="primary" style={{ float: 'right' }} onClick={onClickWrite}>글쓰기</Button>
           </>
         )}

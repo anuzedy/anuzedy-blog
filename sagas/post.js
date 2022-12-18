@@ -1,8 +1,10 @@
 import Router from 'next/router';
 import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
-import { POST_REQUEST, POST_SUCCESS, POST_FAILURE,
+import {
+  POST_REQUEST, POST_SUCCESS, POST_FAILURE,
   POST_WRITE_REQUEST, POST_WRITE_SUCCESS, POST_WRITE_FAILURE,
-  COMMENT_REQUEST, COMMENT_SUCCESS, COMMENT_FAILURE } from '../reducers/post';
+  COMMENT_REQUEST, COMMENT_SUCCESS, COMMENT_FAILURE, getDummyPost
+} from '../reducers/post';
 
 function* post(action) {
   try {
@@ -10,77 +12,13 @@ function* post(action) {
       yield delay(1000);
       yield put({
         type: POST_SUCCESS,
-        data: [{
-          id: 1,
-          title: '첫번째 타이틀',
-          content: '첫번째 내용',
-          categoryId: 2,
-          Comments: [{
-            id: 1,
-            userId: '더미아이디',
-            userIcon: '/pngegg.png',
-            content: '댓글내용',
-          }, {
-            id: 2,
-            userId: '더미아이디2',
-            userIcon: '/pngegg.png',
-            content: '댓글내용2',
-          }],
-        }, {
-          id: 2,
-          title: '두번째 타이틀',
-          content: '두번째 내용',
-          categoryId: 4,
-          Comments: [{
-            id: 3,
-            userId: '더미아이디3',
-            userIcon: '/pngegg.png',
-            content: '댓글내용3',
-          }, {
-            id: 4,
-            userId: '더미아이디4',
-            userIcon: '/pngegg.png',
-            content: '댓글내용4',
-          }],
-        }],
+        data: getDummyPost(),
       });
     } else {
       yield delay(1000);
       yield put({
         type: POST_SUCCESS,
-        data: [{
-          id: 1,
-          title: '첫번째 타이틀',
-          content: '첫번째 내용',
-          categoryId: 2,
-          Comments: [{
-            id: 1,
-            userId: '더미아이디',
-            userIcon: '/pngegg.png',
-            content: '댓글내용',
-          }, {
-            id: 2,
-            userId: '더미아이디2',
-            userIcon: '/pngegg.png',
-            content: '댓글내용2',
-          }],
-        }, {
-          id: 2,
-          title: '두번째 타이틀',
-          content: '두번째 내용',
-          categoryId: 4,
-          Comments: [{
-            id: 3,
-            userId: '더미아이디3',
-            userIcon: '/pngegg.png',
-            content: '댓글내용3',
-          }, {
-            id: 4,
-            userId: '더미아이디4',
-            userIcon: '/pngegg.png',
-            content: '댓글내용4',
-          }],
-        }].filter((v) => v.categoryId === action.data),
+        data: getDummyPost().filter((v) => v.categoryId === action.data),
       });
     }
   } catch (error) {
