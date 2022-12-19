@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { Button, Form, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import useInput from '../hooks/useInput';
-import { postWriteRequest } from '../reducers/post';
+import { postWriteRequest, setRecentId } from '../reducers/post';
 
 const StyledForm = styled(Form)`
   text-align: center;
 `;
 
-const PostWriteComponent = () => {
+const PostWriteComponent = ({ setWriteMode }) => {
   const dispatch = useDispatch();
-  const { postWriteLoading } = useSelector((state) => state.post);
+  const { Posts, postWriteLoading, recentCategory } = useSelector((state) => state.post);
   const [title, onChangeTitle] = useInput('');
   const [content, onChangeContent] = useInput('');
 
@@ -20,7 +20,7 @@ const PostWriteComponent = () => {
     dispatch(postWriteRequest({
       title,
       content,
-      categoryId: 1,
+      categoryId: recentCategory,
     }));
   };
 

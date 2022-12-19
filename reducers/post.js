@@ -4,6 +4,7 @@ import shortId from 'shortid';
 const initialState = {
   Posts: [],
   recentId: 0,
+  recentCategory: 0,
   recentPost: {},
   postLoading: false,
   postComplete: false,
@@ -17,6 +18,7 @@ const initialState = {
   commentLoading: false,
   commentComplete: false,
   commentError: false,
+  writeMode: false,
 };
 
 export const POST_REQUEST = 'POST_REQUEST';
@@ -32,6 +34,8 @@ export const COMMENT_SUCCESS = 'COMMENT_SUCCESS';
 export const COMMENT_FAILURE = 'COMMENT_FAILURE';
 
 export const SET_RECENT_ID = 'SET_RECENT_ID';
+export const SET_RECENT_CATEGORY = 'SET_RECENT_CATEGORY';
+export const SET_WRITE_MODE = 'SET_WRITE_MODE';
 
 export const getDummyPost = () => ([{
   id: 1,
@@ -95,8 +99,18 @@ export const commentRequest = (data) => ({
   },
 });
 
+export const setWriteMode = (data) => ({
+  type: SET_WRITE_MODE,
+  data,
+});
+
 export const setRecentId = (data) => ({
   type: SET_RECENT_ID,
+  data,
+});
+
+export const setRecentCategory = (data) => ({
+  type: SET_RECENT_CATEGORY,
   data,
 });
 
@@ -128,6 +142,8 @@ const reducer = (state = initialState, action) => (
         draft.postWriteComplete = true;
         draft.Posts.unshift(action.data);
         draft.writeMode = false;
+        draft.recentId = action.data.id;
+        draft.recentPost = action.data;
         break;
       case POST_WRITE_FAILURE:
         draft.postWriteLoading = false;
@@ -143,6 +159,7 @@ const reducer = (state = initialState, action) => (
         draft.commentLoading = false;
         draft.commentComplete = true;
         post.Comments.unshift(action.data.comment);
+        draft.recentPost = post;
         break;
       }
       case COMMENT_FAILURE:
@@ -153,6 +170,12 @@ const reducer = (state = initialState, action) => (
       case SET_RECENT_ID:
         draft.recentId = action.data;
         draft.recentPost = draft.Posts.find((v) => v.id === action.data);
+        break;
+      case SET_RECENT_CATEGORY:
+        draft.recentCategory = action.data;
+        break;
+      case SET_WRITE_MODE:
+        draft.writeMode = action.data;
         break;
       default:
         break;

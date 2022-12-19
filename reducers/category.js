@@ -12,19 +12,17 @@ const initialState = {
 export const getDummyCategory = [{
   id: 1,
   name: 'IT',
-  Child: {
+  Child: [{
     id: 2,
     name: 'Javascript',
-    Child: {},
-  },
+  }],
 }, {
   id: 3,
   name: '기타',
-  Child: {
+  Child: [{
     id: 4,
     name: '잡동사니',
-    Child: {},
-  },
+  }],
 }];
 
 export const ALL_POST_CATEGORY_REQUEST = 'ALL_POST_CATEGORY_REQUEST';

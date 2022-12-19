@@ -3,21 +3,19 @@ import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardContent from './BoardContent';
 import PostWriteComponent from './PostWriteComponent';
-import { postRequest, setRecentId } from '../reducers/post';
+import { postRequest, setRecentId, setWriteMode } from '../reducers/post';
 
 const BoardTable = () => {
   const dispatch = useDispatch();
-  const { Posts } = useSelector((state) => state.post);
+  const { Posts, writeMode } = useSelector((state) => state.post);
   const { recentCategory } = useSelector((state) => state.category);
-  const [writeMode, setWriteMode] = useState(false);
 
   const onClickTitle = useCallback((e, id) => {
     dispatch(setRecentId(id));
-    setWriteMode(false);
   }, []);
 
   const onClickWrite = useCallback(() => {
-    setWriteMode(true);
+    dispatch(setWriteMode(true));
   }, [writeMode]);
 
   useEffect(() => {

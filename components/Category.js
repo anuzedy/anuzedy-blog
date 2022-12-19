@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ListGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { cateroryRequest, allPostCategory } from '../reducers/category';
-import { postRequest } from '../reducers/post';
+import { postRequest, setRecentCategory } from '../reducers/post';
 
 const BorderlessTitleItem = styled(ListGroup.Item)`
   border: none;
@@ -30,9 +30,10 @@ const Category = () => {
     dispatch(allPostCategory);
   };
 
-  const onClickCategory = (e, v) => {
+  const onClickCategory = (e, c) => {
     e.preventDefault();
-    dispatch(postRequest(v.id));
+    dispatch(postRequest(c.id));
+    dispatch(setRecentCategory(c.id));
   };
 
   return (
@@ -43,11 +44,13 @@ const Category = () => {
       { categories.map((v) => (
         <BorderlessTitleItem key={v.id}>
           { v.name }
-          <ListGroup>
-            <BorderlessItem>
-              <a href="#" onClick={(e) => onClickCategory(e, v)}>{ v.Child.name }</a>
-            </BorderlessItem>
-          </ListGroup>
+          { v.Child.map((c) => (
+            <ListGroup key={c.id}>
+              <BorderlessItem>
+                <a href="#" onClick={(e) => onClickCategory(e, c)}>{ c.name }</a>
+              </BorderlessItem>
+            </ListGroup>
+          )) }
         </BorderlessTitleItem>
       )) }
     </ListGroup>
